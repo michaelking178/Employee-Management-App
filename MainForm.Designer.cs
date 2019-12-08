@@ -1,6 +1,6 @@
 ﻿namespace Employee_Management_App
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.employeeListview = new System.Windows.Forms.ListView();
+            this.employeeListView = new System.Windows.Forms.ListView();
             this.employeeIDColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StreetAddressColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,28 +38,29 @@
             this.addEmployeeBtn = new System.Windows.Forms.Button();
             this.removeEmployeeBtn = new System.Windows.Forms.Button();
             this.managePositionsBtn = new System.Windows.Forms.Button();
+            this.editEmployeeBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // employeeListview
+            // employeeListView
             // 
-            this.employeeListview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.employeeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.employeeIDColumn,
             this.nameColumn,
             this.StreetAddressColumn,
             this.phoneNumberColumn,
             this.positionColumn,
             this.salaryColumn});
-            this.employeeListview.FullRowSelect = true;
-            this.employeeListview.GridLines = true;
-            this.employeeListview.HideSelection = false;
-            this.employeeListview.Location = new System.Drawing.Point(12, 12);
-            this.employeeListview.MultiSelect = false;
-            this.employeeListview.Name = "employeeListview";
-            this.employeeListview.Size = new System.Drawing.Size(830, 560);
-            this.employeeListview.TabIndex = 0;
-            this.employeeListview.UseCompatibleStateImageBehavior = false;
-            this.employeeListview.View = System.Windows.Forms.View.Details;
-            this.employeeListview.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.employeeListview_ColumnWidthChanging);
+            this.employeeListView.FullRowSelect = true;
+            this.employeeListView.GridLines = true;
+            this.employeeListView.HideSelection = false;
+            this.employeeListView.Location = new System.Drawing.Point(12, 12);
+            this.employeeListView.MultiSelect = false;
+            this.employeeListView.Name = "employeeListView";
+            this.employeeListView.Size = new System.Drawing.Size(830, 560);
+            this.employeeListView.TabIndex = 0;
+            this.employeeListView.UseCompatibleStateImageBehavior = false;
+            this.employeeListView.View = System.Windows.Forms.View.Details;
+            this.employeeListView.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.employeeListview_ColumnWidthChanging);
             // 
             // employeeIDColumn
             // 
@@ -89,28 +90,29 @@
             // 
             this.positionColumn.Tag = "position";
             this.positionColumn.Text = "Position";
-            this.positionColumn.Width = 100;
+            this.positionColumn.Width = 120;
             // 
             // salaryColumn
             // 
             this.salaryColumn.Tag = "salary";
             this.salaryColumn.Text = "Salary";
-            this.salaryColumn.Width = 100;
+            this.salaryColumn.Width = 80;
             // 
             // addEmployeeBtn
             // 
             this.addEmployeeBtn.Location = new System.Drawing.Point(850, 13);
             this.addEmployeeBtn.Name = "addEmployeeBtn";
-            this.addEmployeeBtn.Size = new System.Drawing.Size(199, 43);
+            this.addEmployeeBtn.Size = new System.Drawing.Size(202, 43);
             this.addEmployeeBtn.TabIndex = 1;
             this.addEmployeeBtn.Text = "Add Employee";
             this.addEmployeeBtn.UseVisualStyleBackColor = true;
+            this.addEmployeeBtn.Click += new System.EventHandler(this.addEmployeeBtn_Click);
             // 
             // removeEmployeeBtn
             // 
-            this.removeEmployeeBtn.Location = new System.Drawing.Point(850, 62);
+            this.removeEmployeeBtn.Location = new System.Drawing.Point(850, 111);
             this.removeEmployeeBtn.Name = "removeEmployeeBtn";
-            this.removeEmployeeBtn.Size = new System.Drawing.Size(199, 43);
+            this.removeEmployeeBtn.Size = new System.Drawing.Size(202, 43);
             this.removeEmployeeBtn.TabIndex = 2;
             this.removeEmployeeBtn.Text = "Remove Employee";
             this.removeEmployeeBtn.UseVisualStyleBackColor = true;
@@ -120,22 +122,36 @@
             // 
             this.managePositionsBtn.Location = new System.Drawing.Point(850, 529);
             this.managePositionsBtn.Name = "managePositionsBtn";
-            this.managePositionsBtn.Size = new System.Drawing.Size(199, 43);
+            this.managePositionsBtn.Size = new System.Drawing.Size(202, 43);
             this.managePositionsBtn.TabIndex = 3;
             this.managePositionsBtn.Text = "Manage Positions";
             this.managePositionsBtn.UseVisualStyleBackColor = true;
             this.managePositionsBtn.Click += new System.EventHandler(this.managePositionsBtn_Click);
             // 
-            // Form1
+            // editEmployeeBtn
+            // 
+            this.editEmployeeBtn.Location = new System.Drawing.Point(850, 62);
+            this.editEmployeeBtn.Name = "editEmployeeBtn";
+            this.editEmployeeBtn.Size = new System.Drawing.Size(202, 43);
+            this.editEmployeeBtn.TabIndex = 4;
+            this.editEmployeeBtn.Text = "Edit Employee";
+            this.editEmployeeBtn.UseVisualStyleBackColor = true;
+            this.editEmployeeBtn.Click += new System.EventHandler(this.editEmployeeBtn_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 585);
+            this.ClientSize = new System.Drawing.Size(1064, 585);
+            this.Controls.Add(this.editEmployeeBtn);
             this.Controls.Add(this.managePositionsBtn);
             this.Controls.Add(this.removeEmployeeBtn);
             this.Controls.Add(this.addEmployeeBtn);
-            this.Controls.Add(this.employeeListview);
-            this.Name = "Form1";
+            this.Controls.Add(this.employeeListView);
+            this.MaximumSize = new System.Drawing.Size(1080, 624);
+            this.MinimumSize = new System.Drawing.Size(1080, 624);
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Management Application";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -143,8 +159,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView employeeListview;
         private System.Windows.Forms.ColumnHeader employeeIDColumn;
         private System.Windows.Forms.ColumnHeader nameColumn;
         private System.Windows.Forms.ColumnHeader positionColumn;
@@ -154,6 +168,8 @@
         private System.Windows.Forms.Button addEmployeeBtn;
         private System.Windows.Forms.Button removeEmployeeBtn;
         private System.Windows.Forms.Button managePositionsBtn;
+        private System.Windows.Forms.Button editEmployeeBtn;
+        public System.Windows.Forms.ListView employeeListView;
     }
 }
 

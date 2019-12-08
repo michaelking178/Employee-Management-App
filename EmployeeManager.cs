@@ -13,15 +13,16 @@ namespace Employee_Management_App
             Employees = new List<Employee>();
         }
 
-        public void AddEmployee(string firstName, string lastName, string streetAddress, string phoneNumber, Position position)
+        public bool AddEmployee(string firstName, string lastName, string streetAddress, string phoneNumber, Position position)
         {
             int newId = GenerateId();
             if(newId != 0)
             {
                 Employee newEmployee = new Employee(GenerateId(), firstName, lastName, streetAddress, phoneNumber, position);
                 Employees.Add(newEmployee);
-                return;
+                return true;
             }
+            return false;
             //TODO: show message, failed to create Employee.
         }
 
@@ -49,11 +50,9 @@ namespace Employee_Management_App
                 }
                 if(attempts >= 5)
                 {
-                    //TODO: message that max attempts reached without success.
-                    break;
+                    return 0;
                 }
             }
-
             return newId;
         }
     }

@@ -10,14 +10,15 @@ using System.Windows.Forms;
 
 namespace Employee_Management_App
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private readonly Controller controller;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
-            controller = new Controller();            
+            controller = new Controller();
+            controller.mainForm = this;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -28,13 +29,13 @@ namespace Employee_Management_App
         // Button functions
         private void managePositionsBtn_Click(object sender, EventArgs e)
         {
-            Form positionForm = new PositionForm(controller);
+            Form positionForm = new ManagePositionsForm(controller);
             positionForm.ShowDialog();
         }
 
         private void removeEmployeeBtn_Click(object sender, EventArgs e)
         {
-            controller.RemoveEmployee(employeeListview.SelectedItems[0]);
+            controller.RemoveEmployee(employeeListView.SelectedItems[0]);
             UpdateEmployeeListView();
         }
 
@@ -42,13 +43,22 @@ namespace Employee_Management_App
         private void employeeListview_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             e.Cancel = true;
-            e.NewWidth = employeeListview.Columns[e.ColumnIndex].Width;
+            e.NewWidth = employeeListView.Columns[e.ColumnIndex].Width;
         }
 
         private void UpdateEmployeeListView()
         {
-            employeeListview.Items.Clear();
-            controller.UpdateEmployeeListview(employeeListview);
+            controller.UpdateEmployeeListView();
+        }
+
+        private void editEmployeeBtn_Click(object sender, EventArgs e)
+        {
+            //TODO: Create Edit Employee form
+        }
+
+        private void addEmployeeBtn_Click(object sender, EventArgs e)
+        {
+            //TODO: Create Add Employee form
         }
     }
 }
