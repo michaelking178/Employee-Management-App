@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Employee_Management_App.Models;
+using Employee_Management_App.Views;
 
 namespace Employee_Management_App
 {
@@ -20,6 +21,7 @@ namespace Employee_Management_App
         public ManagePositionsForm managePositionsForm { get; set; }
         public CreatePositionForm createPositionForm { get; set; }
         public EditPositionForm editPositionForm { get; set; }
+        public AddEmployeeForm addEmployeeForm { get; set; }
 
         public Controller()
         {
@@ -54,8 +56,10 @@ namespace Employee_Management_App
             }
         }
 
-        public void AddEmployee(string firstName, string lastName, string streetAddress, string phoneNumber, Position position)
+        public void AddEmployee(string firstName, string lastName, string streetAddress, string phoneNumber, string positionTitle)
         {
+            Position position = positionList.Find(Position => Position.Title == positionTitle);
+
             if (!employeeManager.AddEmployee(firstName, lastName, streetAddress, phoneNumber, position))
             {
                 MessageBox.Show("Failed to create employee.");
@@ -65,7 +69,7 @@ namespace Employee_Management_App
 
         public void EditEmployee()
         {
-            //TODO: Edit Employee functionality
+            //TODO: Implement 'Edit Employee' functionality
         }
 
         public void RemoveEmployee(ListViewItem employee)
@@ -125,7 +129,7 @@ namespace Employee_Management_App
 
         public void EditPosition()
         {
-            //TODO: Edit Position functionality
+            //TODO: Implement 'Edit Position' functionality
             MessageBox.Show("Not yet implemented. Sorry!");
         }
 

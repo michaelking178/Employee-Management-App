@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Employee_Management_App
+namespace Employee_Management_App.Views
 {
     public partial class MainForm : Form
     {
@@ -40,12 +40,13 @@ namespace Employee_Management_App
 
         private void editEmployeeBtn_Click(object sender, EventArgs e)
         {
-            //TODO: Create Edit Employee form
+            //TODO: Create 'Edit Employee' form
         }
 
         private void addEmployeeBtn_Click(object sender, EventArgs e)
         {
-            //TODO: Create Add Employee form
+            Form addEmployeeForm = new AddEmployeeForm(controller);
+            addEmployeeForm.ShowDialog();
         }
         
         private void employeeListview_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
@@ -55,6 +56,5 @@ namespace Employee_Management_App
         }
     }
 }
-
 
 //TODO: Sort columns by header

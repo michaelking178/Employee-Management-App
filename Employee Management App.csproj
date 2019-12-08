@@ -49,6 +49,12 @@
     <Compile Include="Controller.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeManager.cs" />
+    <Compile Include="Views\AddEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddEmployeeForm.Designer.cs">
+      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditPositionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     <Compile Include="Models\PositionManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Views\AddEmployeeForm.resx">
+      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\EditPositionForm.resx">
       <DependentUpon>EditPositionForm.cs</DependentUpon>
     </EmbeddedResource>

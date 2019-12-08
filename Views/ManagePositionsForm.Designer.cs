@@ -1,4 +1,4 @@
-﻿namespace Employee_Management_App
+﻿namespace Employee_Management_App.Views
 {
     partial class ManagePositionsForm
     {

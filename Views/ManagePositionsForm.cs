@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Employee_Management_App
+namespace Employee_Management_App.Views
 {
     public partial class ManagePositionsForm : Form
     {
