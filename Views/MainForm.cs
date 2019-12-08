@@ -35,7 +35,10 @@ namespace Employee_Management_App.Views
 
         private void removeEmployeeBtn_Click(object sender, EventArgs e)
         {
-            controller.RemoveEmployee(employeeListView.SelectedItems[0]);
+            if(employeeListView.SelectedItems.Count != 0)
+            {
+                controller.RemoveEmployee(employeeListView.SelectedItems[0]);
+            }
         }
 
         private void editEmployeeBtn_Click(object sender, EventArgs e)

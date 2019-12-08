@@ -34,18 +34,30 @@ namespace Employee_Management_App.Views
 
         private void editPositionBtn_Click(object sender, EventArgs e)
         {
-            Form editPositionForm = new EditPositionForm(controller);
-            editPositionForm.ShowDialog();
+            if (positionListview.SelectedItems.Count != 0)
+            {
+                Form editPositionForm = new EditPositionForm(controller);
+                editPositionForm.ShowDialog();
+            }
         }
 
         private void removePositionBtn_Click(object sender, EventArgs e)
         {
-            controller.RemovePosition(positionListview.SelectedItems[0]);
+            if (positionListview.SelectedItems.Count != 0)
+            {
+                controller.RemovePosition(positionListview.SelectedItems[0]);
+            }
         }
 
         private void closeManagePosBtn_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void positionListview_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        {
+            e.Cancel = true;
+            e.NewWidth = positionListview.Columns[e.ColumnIndex].Width;
         }
     }
 }

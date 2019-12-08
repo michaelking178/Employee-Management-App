@@ -32,22 +32,29 @@ namespace Employee_Management_App.Views
 
         private void addEmployeeBtn_Click(object sender, EventArgs e)
         {
-            string streetAddress = streetAddressTextBox.Text;
-            string city = cityTextBox.Text;
-            string province = provinceComboBox.SelectedItem.ToString();
-            string postalCode = postalCodeTextBox.Text;
+            try
+            {
+                string streetAddress = streetAddressTextBox.Text;
+                string city = cityTextBox.Text;
+                string province = provinceComboBox.SelectedItem.ToString();
+                string postalCode = postalCodeTextBox.Text;
 
-            string position = positionComboBox.SelectedItem.ToString();
-            string fullAddress = streetAddress + " " + city + " " + province + " " + postalCode;
+                string position = positionComboBox.SelectedItem.ToString();
+                string fullAddress = streetAddress + " " + city + " " + province + " " + postalCode;
 
-            controller.AddEmployee (
-                firstNameTextBox.Text,
-                lastNameTextBox.Text,
-                fullAddress,
-                phoneNumberTextBox.Text,
-                position
-            );
-            Close();
+                controller.AddEmployee(
+                    firstNameTextBox.Text,
+                    lastNameTextBox.Text,
+                    fullAddress,
+                    phoneNumberTextBox.Text,
+                    position
+                );
+                Close();
+            }
+            catch
+            {
+                MessageBox.Show("Cannot add employee. Employee data is not valid.", "Add Employee Error");
+            }
         }
 
         private void cancelAddEmployeeBtn_Click(object sender, EventArgs e)

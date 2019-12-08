@@ -46,8 +46,6 @@
             this.phoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.phoneNumberLbl = new System.Windows.Forms.Label();
             this.provinceComboBox = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // firstNameLbl
@@ -91,28 +89,28 @@
             this.firstNameTextBox.Location = new System.Drawing.Point(94, 12);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(347, 20);
-            this.firstNameTextBox.TabIndex = 2;
+            this.firstNameTextBox.TabIndex = 0;
             // 
             // lastNameTextBox
             // 
             this.lastNameTextBox.Location = new System.Drawing.Point(94, 38);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(347, 20);
-            this.lastNameTextBox.TabIndex = 3;
+            this.lastNameTextBox.TabIndex = 1;
             // 
             // streetAddressTextBox
             // 
             this.streetAddressTextBox.Location = new System.Drawing.Point(94, 64);
             this.streetAddressTextBox.Name = "streetAddressTextBox";
             this.streetAddressTextBox.Size = new System.Drawing.Size(347, 20);
-            this.streetAddressTextBox.TabIndex = 4;
+            this.streetAddressTextBox.TabIndex = 2;
             // 
             // cityTextBox
             // 
             this.cityTextBox.Location = new System.Drawing.Point(94, 90);
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(131, 20);
-            this.cityTextBox.TabIndex = 5;
+            this.cityTextBox.TabIndex = 3;
             // 
             // provinceLbl
             // 
@@ -134,18 +132,20 @@
             // 
             // positionComboBox
             // 
+            this.positionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.positionComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.positionComboBox.FormattingEnabled = true;
             this.positionComboBox.Location = new System.Drawing.Point(94, 142);
             this.positionComboBox.Name = "positionComboBox";
             this.positionComboBox.Size = new System.Drawing.Size(215, 21);
-            this.positionComboBox.TabIndex = 9;
+            this.positionComboBox.TabIndex = 7;
             // 
             // postalCodeTextBox
             // 
             this.postalCodeTextBox.Location = new System.Drawing.Point(94, 116);
             this.postalCodeTextBox.Name = "postalCodeTextBox";
             this.postalCodeTextBox.Size = new System.Drawing.Size(131, 20);
-            this.postalCodeTextBox.TabIndex = 11;
+            this.postalCodeTextBox.TabIndex = 5;
             // 
             // postalCodeLbl
             // 
@@ -161,7 +161,7 @@
             this.addEmployeeBtn.Location = new System.Drawing.Point(447, 12);
             this.addEmployeeBtn.Name = "addEmployeeBtn";
             this.addEmployeeBtn.Size = new System.Drawing.Size(202, 43);
-            this.addEmployeeBtn.TabIndex = 13;
+            this.addEmployeeBtn.TabIndex = 8;
             this.addEmployeeBtn.Text = "Add Employee";
             this.addEmployeeBtn.UseVisualStyleBackColor = true;
             this.addEmployeeBtn.Click += new System.EventHandler(this.addEmployeeBtn_Click);
@@ -171,7 +171,7 @@
             this.cancelAddEmployeeBtn.Location = new System.Drawing.Point(448, 61);
             this.cancelAddEmployeeBtn.Name = "cancelAddEmployeeBtn";
             this.cancelAddEmployeeBtn.Size = new System.Drawing.Size(202, 43);
-            this.cancelAddEmployeeBtn.TabIndex = 12;
+            this.cancelAddEmployeeBtn.TabIndex = 9;
             this.cancelAddEmployeeBtn.Text = "Cancel";
             this.cancelAddEmployeeBtn.UseVisualStyleBackColor = true;
             this.cancelAddEmployeeBtn.Click += new System.EventHandler(this.cancelAddEmployeeBtn_Click);
@@ -181,7 +181,7 @@
             this.phoneNumberTextBox.Location = new System.Drawing.Point(315, 116);
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
             this.phoneNumberTextBox.Size = new System.Drawing.Size(127, 20);
-            this.phoneNumberTextBox.TabIndex = 15;
+            this.phoneNumberTextBox.TabIndex = 6;
             // 
             // phoneNumberLbl
             // 
@@ -194,7 +194,6 @@
             // 
             // provinceComboBox
             // 
-            this.provinceComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.provinceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.provinceComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.provinceComboBox.FormattingEnabled = true;
@@ -212,33 +211,24 @@
             "Northwest Territories",
             "Nunavut",
             "Yukon Territory"});
-            this.provinceComboBox.Location = new System.Drawing.Point(0, 0);
+            this.provinceComboBox.Location = new System.Drawing.Point(315, 90);
             this.provinceComboBox.Name = "provinceComboBox";
-            this.provinceComboBox.Size = new System.Drawing.Size(125, 21);
-            this.provinceComboBox.TabIndex = 7;
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.provinceComboBox);
-            this.panel1.Location = new System.Drawing.Point(315, 90);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(127, 21);
-            this.panel1.TabIndex = 16;
+            this.provinceComboBox.Size = new System.Drawing.Size(126, 21);
+            this.provinceComboBox.TabIndex = 4;
             // 
             // AddEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 175);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.positionComboBox);
+            this.Controls.Add(this.provinceComboBox);
             this.Controls.Add(this.phoneNumberTextBox);
             this.Controls.Add(this.phoneNumberLbl);
             this.Controls.Add(this.addEmployeeBtn);
             this.Controls.Add(this.cancelAddEmployeeBtn);
             this.Controls.Add(this.postalCodeTextBox);
             this.Controls.Add(this.postalCodeLbl);
-            this.Controls.Add(this.positionComboBox);
             this.Controls.Add(this.positionLbl);
             this.Controls.Add(this.provinceLbl);
             this.Controls.Add(this.cityTextBox);
@@ -254,7 +244,6 @@
             this.Name = "AddEmployeeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Employee";
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,8 +267,7 @@
         private System.Windows.Forms.Button cancelAddEmployeeBtn;
         private System.Windows.Forms.TextBox phoneNumberTextBox;
         private System.Windows.Forms.Label phoneNumberLbl;
-        private System.Windows.Forms.ComboBox provinceComboBox;
-        private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.ComboBox positionComboBox;
+        private System.Windows.Forms.ComboBox provinceComboBox;
     }
 }
