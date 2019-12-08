@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Employee_Management_Application
+namespace Employee_Management_App
 {
     public class Employee
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FullName { get; set; }
         public string StreetAddress { get; set; }
         public string City { get; set; }
         public string Province { get; set; }
@@ -20,6 +21,7 @@ namespace Employee_Management_Application
             Id = id;
             FirstName = firstName;
             LastName = lastName;
+            FullName = FirstName + " " + LastName;
             StreetAddress = streetAddress;
             PhoneNumber = phoneNumber;
             Position = position;

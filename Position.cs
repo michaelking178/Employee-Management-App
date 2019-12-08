@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Employee_Management_Application
+namespace Employee_Management_App
 {
     public class Position
     {

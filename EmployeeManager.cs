@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Employee_Management_Application
+namespace Employee_Management_App
 {
     class EmployeeManager
     {
@@ -15,14 +15,20 @@ namespace Employee_Management_Application
 
         public void AddEmployee(string firstName, string lastName, string streetAddress, string phoneNumber, Position position)
         {
-            Employee newEmployee = new Employee(GenerateId(), firstName, lastName, streetAddress, phoneNumber, position);
-
-            Employees.Add(newEmployee);
+            int newId = GenerateId();
+            if(newId != 0)
+            {
+                Employee newEmployee = new Employee(GenerateId(), firstName, lastName, streetAddress, phoneNumber, position);
+                Employees.Add(newEmployee);
+                return;
+            }
+            //TODO: show message, failed to create Employee.
         }
 
-        public void RemoveEmployee(string firstName, string lastName)
+        public void RemoveEmployee(int employeeID)
         {
-            // Remove Employee   
+            Employee employeeToRemove = Employees.Find(employee => employee.Id == employeeID);
+            Employees.Remove(employeeToRemove);
         }
 
         private int GenerateId()
@@ -32,11 +38,19 @@ namespace Employee_Management_Application
 
             for (int i = 0; i < Employees.Count; i++)
             {
+                int attempts = 0;
+
                 int idToCheck = Employees[i].Id;
                 if (idToCheck == newId)
                 {
                     newId = rand.Next(11111, 99999);
                     i = 0;
+                    attempts++;
+                }
+                if(attempts >= 5)
+                {
+                    //TODO: message that max attempts reached without success.
+                    break;
                 }
             }
 
