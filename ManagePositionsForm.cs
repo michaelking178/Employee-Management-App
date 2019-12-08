@@ -34,12 +34,12 @@ namespace Employee_Management_App
 
         private void editPositionBtn_Click(object sender, EventArgs e)
         {
-            //TODO: Edit Position functionality
+            //TODO: Create Edit Position form
         }
 
         private void removePositionBtn_Click(object sender, EventArgs e)
         {
-            //TODO: Remove Position functionality (check for employees with the position first!)
+            controller.RemovePosition();
         }
     }
 }

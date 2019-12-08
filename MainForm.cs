@@ -23,7 +23,7 @@ namespace Employee_Management_App
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            UpdateEmployeeListView();
+            controller.UpdateEmployeeListView();
         }
 
         // Button functions
@@ -36,19 +36,6 @@ namespace Employee_Management_App
         private void removeEmployeeBtn_Click(object sender, EventArgs e)
         {
             controller.RemoveEmployee(employeeListView.SelectedItems[0]);
-            UpdateEmployeeListView();
-        }
-
-        // EmployeeListview functions
-        private void employeeListview_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
-        {
-            e.Cancel = true;
-            e.NewWidth = employeeListView.Columns[e.ColumnIndex].Width;
-        }
-
-        private void UpdateEmployeeListView()
-        {
-            controller.UpdateEmployeeListView();
         }
 
         private void editEmployeeBtn_Click(object sender, EventArgs e)
@@ -60,5 +47,14 @@ namespace Employee_Management_App
         {
             //TODO: Create Add Employee form
         }
+        
+        private void employeeListview_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        {
+            e.Cancel = true;
+            e.NewWidth = employeeListView.Columns[e.ColumnIndex].Width;
+        }
     }
 }
+
+
+//TODO: Sort columns by header

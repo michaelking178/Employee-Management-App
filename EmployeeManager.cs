@@ -23,7 +23,6 @@ namespace Employee_Management_App
                 return true;
             }
             return false;
-            //TODO: show message, failed to create Employee.
         }
 
         public void RemoveEmployee(int employeeID)

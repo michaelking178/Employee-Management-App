@@ -45,6 +45,7 @@
             this.positionListview.GridLines = true;
             this.positionListview.HideSelection = false;
             this.positionListview.Location = new System.Drawing.Point(12, 12);
+            this.positionListview.MultiSelect = false;
             this.positionListview.Name = "positionListview";
             this.positionListview.Size = new System.Drawing.Size(209, 280);
             this.positionListview.TabIndex = 0;
