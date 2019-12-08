@@ -47,37 +47,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeManager.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeManager.cs" />
+    <Compile Include="Views\EditPositionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Views\EditPositionForm.Designer.cs">
+      <DependentUpon>EditPositionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreatePositionForm.cs">
+    <Compile Include="Views\CreatePositionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreatePositionForm.Designer.cs">
+    <Compile Include="Views\CreatePositionForm.Designer.cs">
       <DependentUpon>CreatePositionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Position.cs" />
-    <Compile Include="ManagePositionsForm.cs">
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Views\ManagePositionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManagePositionsForm.Designer.cs">
+    <Compile Include="Views\ManagePositionsForm.Designer.cs">
       <DependentUpon>ManagePositionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PositionManager.cs" />
+    <Compile Include="Models\PositionManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Views\EditPositionForm.resx">
+      <DependentUpon>EditPositionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreatePositionForm.resx">
+    <EmbeddedResource Include="Views\CreatePositionForm.resx">
       <DependentUpon>CreatePositionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManagePositionsForm.resx">
+    <EmbeddedResource Include="Views\ManagePositionsForm.resx">
       <DependentUpon>ManagePositionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

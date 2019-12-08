@@ -34,6 +34,7 @@
             this.createPositionBtn = new System.Windows.Forms.Button();
             this.editPositionBtn = new System.Windows.Forms.Button();
             this.removePositionBtn = new System.Windows.Forms.Button();
+            this.closeManagePosBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // positionListview
@@ -92,11 +93,22 @@
             this.removePositionBtn.UseVisualStyleBackColor = true;
             this.removePositionBtn.Click += new System.EventHandler(this.removePositionBtn_Click);
             // 
+            // closeManagePosBtn
+            // 
+            this.closeManagePosBtn.Location = new System.Drawing.Point(227, 249);
+            this.closeManagePosBtn.Name = "closeManagePosBtn";
+            this.closeManagePosBtn.Size = new System.Drawing.Size(202, 43);
+            this.closeManagePosBtn.TabIndex = 5;
+            this.closeManagePosBtn.Text = "Close";
+            this.closeManagePosBtn.UseVisualStyleBackColor = true;
+            this.closeManagePosBtn.Click += new System.EventHandler(this.closeManagePosBtn_Click);
+            // 
             // ManagePositionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(440, 304);
+            this.Controls.Add(this.closeManagePosBtn);
             this.Controls.Add(this.removePositionBtn);
             this.Controls.Add(this.editPositionBtn);
             this.Controls.Add(this.createPositionBtn);
@@ -116,5 +128,6 @@
         private System.Windows.Forms.Button editPositionBtn;
         private System.Windows.Forms.Button removePositionBtn;
         public System.Windows.Forms.ListView positionListview;
+        private System.Windows.Forms.Button closeManagePosBtn;
     }
 }

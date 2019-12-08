@@ -34,12 +34,18 @@ namespace Employee_Management_App
 
         private void editPositionBtn_Click(object sender, EventArgs e)
         {
-            //TODO: Create Edit Position form
+            Form editPositionForm = new EditPositionForm(controller);
+            editPositionForm.ShowDialog();
         }
 
         private void removePositionBtn_Click(object sender, EventArgs e)
         {
-            controller.RemovePosition();
+            controller.RemovePosition(positionListview.SelectedItems[0]);
+        }
+
+        private void closeManagePosBtn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

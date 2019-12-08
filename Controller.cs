@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Employee_Management_App.Models;
 
 namespace Employee_Management_App
 {
@@ -18,6 +19,7 @@ namespace Employee_Management_App
         public MainForm mainForm { get; set; }
         public ManagePositionsForm managePositionsForm { get; set; }
         public CreatePositionForm createPositionForm { get; set; }
+        public EditPositionForm editPositionForm { get; set; }
 
         public Controller()
         {
@@ -68,9 +70,13 @@ namespace Employee_Management_App
 
         public void RemoveEmployee(ListViewItem employee)
         {
-            int employeeId = int.Parse(employee.SubItems[0].Text);
-            employeeManager.RemoveEmployee(employeeId);
-            UpdateEmployeeListView();
+            DialogResult confirmResult = MessageBox.Show("Are you sure you want to remove this employee? \nThis action cannot be undone.","Confirm Employee Removal", MessageBoxButtons.YesNo);
+            if(confirmResult == DialogResult.Yes)
+            {
+                int employeeId = int.Parse(employee.SubItems[0].Text);
+                employeeManager.RemoveEmployee(employeeId);
+                UpdateEmployeeListView();
+            }
         }
 
 
@@ -100,14 +106,14 @@ namespace Employee_Management_App
             {
                 if (title == position.Title)
                 {
-                    MessageBox.Show("A position with that title already exists.");
+                    MessageBox.Show("A position with that title already exists.", "Create Position Error");
                     return;
                 }
             }
 
             if (!int.TryParse(_salary, out salary))
             {
-                MessageBox.Show("Please enter only numbers in the Salary field.");
+                MessageBox.Show("Please enter only numbers in the Salary field.", "Create Position Error");
                 return;
             }
 
@@ -120,11 +126,34 @@ namespace Employee_Management_App
         public void EditPosition()
         {
             //TODO: Edit Position functionality
+            MessageBox.Show("Not yet implemented. Sorry!");
         }
 
-        public void RemovePosition()
+        public void RemovePosition(ListViewItem _position)
         {
-            //TODO: Remove Position functionality (check for employees with the position first!)
+            DialogResult confirmResult = MessageBox.Show("Are you sure you want to remove this position? \nThis action cannot be undone.", "Confirm Position Removal", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                string titleToRemove = _position.SubItems[0].Text;
+                foreach (Employee employee in employeeList)
+                {
+                    if (employee.Position.Title == titleToRemove)
+                    {
+                        MessageBox.Show("Cannot remove positions held by current employees. \nPlease remove or edit the employees before removing the position.", "Remove Position Error");
+                        return;
+                    }
+                }
+
+                foreach (Position position in positionList)
+                {
+                    if (position.Title == titleToRemove)
+                    {
+                        positionList.Remove(position);
+                        UpdatePositionListView();
+                        return;
+                    }
+                }
+            }
         }
 
 

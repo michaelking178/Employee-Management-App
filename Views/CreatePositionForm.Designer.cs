@@ -72,7 +72,7 @@
             // 
             // cancelCreatePosBtn
             // 
-            this.cancelCreatePosBtn.Location = new System.Drawing.Point(288, 58);
+            this.cancelCreatePosBtn.Location = new System.Drawing.Point(290, 58);
             this.cancelCreatePosBtn.Name = "cancelCreatePosBtn";
             this.cancelCreatePosBtn.Size = new System.Drawing.Size(202, 43);
             this.cancelCreatePosBtn.TabIndex = 4;
@@ -82,7 +82,7 @@
             // 
             // createPosBtn
             // 
-            this.createPosBtn.Location = new System.Drawing.Point(288, 9);
+            this.createPosBtn.Location = new System.Drawing.Point(290, 9);
             this.createPosBtn.Name = "createPosBtn";
             this.createPosBtn.Size = new System.Drawing.Size(202, 43);
             this.createPosBtn.TabIndex = 5;
@@ -94,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(501, 110);
+            this.ClientSize = new System.Drawing.Size(504, 111);
             this.Controls.Add(this.createPosBtn);
             this.Controls.Add(this.cancelCreatePosBtn);
             this.Controls.Add(this.salaryTextBox);
@@ -103,9 +103,9 @@
             this.Controls.Add(this.titleLbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(517, 149);
+            this.MaximumSize = new System.Drawing.Size(520, 150);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(517, 149);
+            this.MinimumSize = new System.Drawing.Size(520, 150);
             this.Name = "CreatePositionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create Position";
