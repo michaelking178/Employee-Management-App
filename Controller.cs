@@ -127,10 +127,14 @@ namespace Employee_Management_App
             createPositionForm.Close();
         }
 
-        public void EditPosition()
+        public void EditPosition(string titleToEdit, string newTitle, int newSalary)
         {
-            //TODO: Implement 'Edit Position' functionality
-            MessageBox.Show("Not yet implemented. Sorry!");
+            Position positionToEdit = positionList.Find(Position => Position.Title == titleToEdit);
+            positionToEdit.Title = newTitle;
+            positionToEdit.Salary = newSalary;
+
+            UpdatePositionListView();
+            editPositionForm.Close();
         }
 
         public void RemovePosition(ListViewItem _position)

@@ -12,12 +12,17 @@ namespace Employee_Management_App.Views
 {
     public partial class EditPositionForm : Form
     {
-        Controller controller;
+        private readonly Controller controller;
+        private readonly string titleToEdit;
 
-        public EditPositionForm(Controller _controller)
+        public EditPositionForm(Controller _controller, string title, string salary)
         {
             InitializeComponent();
             controller = _controller;
+            controller.editPositionForm = this;
+            titleToEdit = title;
+            editTitleTextBox.Text = title;
+            editSalaryTextBox.Text = salary.Remove(0,2); //Removes the "$ " at the front of the salary string.
         }
 
         private void cancelCreatePosBtn_Click(object sender, EventArgs e)
@@ -27,7 +32,16 @@ namespace Employee_Management_App.Views
 
         private void editPosBtn_Click(object sender, EventArgs e)
         {
-            controller.EditPosition();
+            try
+            {
+                string newTitle = editTitleTextBox.Text;
+                int newSalary = int.Parse(editSalaryTextBox.Text);
+                controller.EditPosition(titleToEdit, newTitle, newSalary);
+            }
+            catch
+            {
+                MessageBox.Show("Please enter only numbers in the Salary field.", "Edit Position Error");
+            }
         }
     }
 }

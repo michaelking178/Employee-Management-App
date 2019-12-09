@@ -12,7 +12,7 @@ namespace Employee_Management_App.Views
 {
     public partial class AddEmployeeForm : Form
     {
-        private Controller controller;
+        private readonly Controller controller;
 
         public AddEmployeeForm(Controller _controller)
         {

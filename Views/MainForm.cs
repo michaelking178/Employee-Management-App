@@ -26,7 +26,6 @@ namespace Employee_Management_App.Views
             controller.UpdateEmployeeListView();
         }
 
-        // Button functions
         private void managePositionsBtn_Click(object sender, EventArgs e)
         {
             Form positionForm = new ManagePositionsForm(controller);

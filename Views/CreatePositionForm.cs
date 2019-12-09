@@ -12,7 +12,7 @@ namespace Employee_Management_App.Views
 {
     public partial class CreatePositionForm : Form
     {
-        private Controller controller;
+        private readonly Controller controller;
 
         public CreatePositionForm(Controller _controller)
         {
