@@ -39,6 +39,7 @@ namespace Employee_Management_App.Views
                 string province = provinceComboBox.SelectedItem.ToString();
                 string postalCode = postalCodeTextBox.Text;
 
+                //TODO: Break up the street address in the Employee object for easier parsing later.
                 string position = positionComboBox.SelectedItem.ToString();
                 string fullAddress = streetAddress + " " + city + " " + province + " " + postalCode;
 

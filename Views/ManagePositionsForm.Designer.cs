@@ -52,6 +52,7 @@
             this.positionListview.TabIndex = 0;
             this.positionListview.UseCompatibleStateImageBehavior = false;
             this.positionListview.View = System.Windows.Forms.View.Details;
+            this.positionListview.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.positionListview_ColumnClick);
             this.positionListview.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.positionListview_ColumnWidthChanging);
             // 
             // titleColumn

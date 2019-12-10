@@ -63,5 +63,10 @@ namespace Employee_Management_App.Views
             e.Cancel = true;
             e.NewWidth = positionListview.Columns[e.ColumnIndex].Width;
         }
+
+        private void positionListview_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            //TODO: Implement column sorting
+        }
     }
 }

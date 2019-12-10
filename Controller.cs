@@ -22,6 +22,7 @@ namespace Employee_Management_App
         public CreatePositionForm createPositionForm { get; set; }
         public EditPositionForm editPositionForm { get; set; }
         public AddEmployeeForm addEmployeeForm { get; set; }
+        public EditEmployeeForm editEmployeeForm { get; set; }
 
         public Controller()
         {
@@ -81,6 +82,18 @@ namespace Employee_Management_App
                 employeeManager.RemoveEmployee(employeeId);
                 UpdateEmployeeListView();
             }
+        }
+
+        public void PopulateEmployeeEditForm()
+        {
+            string selectedEmployeeId = mainForm.employeeListView.SelectedItems[0].SubItems[0].Text;
+            Employee selectedEmployee = employeeList.Find(Employee => Employee.Id==int.Parse(selectedEmployeeId));
+
+            editEmployeeForm.firstNameTextBox.Text = selectedEmployee.FirstName;
+            editEmployeeForm.lastNameTextBox.Text = selectedEmployee.LastName;
+            editEmployeeForm.streetAddressTextBox.Text = selectedEmployee.StreetAddress;
+            editEmployeeForm.cityTextBox.Text = selectedEmployee.City;
+
         }
 
 

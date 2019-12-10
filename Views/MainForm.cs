@@ -42,7 +42,9 @@ namespace Employee_Management_App.Views
 
         private void editEmployeeBtn_Click(object sender, EventArgs e)
         {
-            //TODO: Create 'Edit Employee' form
+            Form editEmployeeForm = new EditEmployeeForm(controller);
+            editEmployeeForm.ShowDialog();
+            controller.PopulateEmployeeEditForm();
         }
 
         private void addEmployeeBtn_Click(object sender, EventArgs e)
@@ -58,5 +60,3 @@ namespace Employee_Management_App.Views
         }
     }
 }
-
-//TODO: Sort columns by header
