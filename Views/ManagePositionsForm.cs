@@ -36,10 +36,8 @@ namespace Employee_Management_App.Views
         {
             if (positionListview.SelectedItems.Count != 0)
             {
-                string positionTitle = positionListview.SelectedItems[0].SubItems[0].Text;
-                string positionSalary = positionListview.SelectedItems[0].SubItems[1].Text;
-
-                Form editPositionForm = new EditPositionForm(controller, positionTitle, positionSalary);
+                controller.SetPositionToEdit(positionListview.SelectedItems[0]);
+                Form editPositionForm = new EditPositionForm(controller);
                 editPositionForm.ShowDialog();
             }
         }

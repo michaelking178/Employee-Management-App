@@ -115,9 +115,9 @@
 
         private System.Windows.Forms.Button editPosBtn;
         private System.Windows.Forms.Button cancelCreatePosBtn;
-        private System.Windows.Forms.TextBox editSalaryTextBox;
-        private System.Windows.Forms.TextBox editTitleTextBox;
         private System.Windows.Forms.Label editSalaryLbl;
         private System.Windows.Forms.Label editTitleLbl;
+        public System.Windows.Forms.TextBox editSalaryTextBox;
+        public System.Windows.Forms.TextBox editTitleTextBox;
     }
 }

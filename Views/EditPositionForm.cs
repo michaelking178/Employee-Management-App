@@ -13,18 +13,13 @@ namespace Employee_Management_App.Views
     public partial class EditPositionForm : Form
     {
         private readonly Controller controller;
-        private readonly string titleToEdit;
 
-        public EditPositionForm(Controller _controller, string title, string salary)
+        public EditPositionForm(Controller _controller)
         {
             InitializeComponent();
             controller = _controller;
             controller.editPositionForm = this;
-
-            //TODO: abstract Edit Position Form population out of the UI item.
-            titleToEdit = title;
-            editTitleTextBox.Text = title;
-            editSalaryTextBox.Text = salary.Remove(0,2); //Removes the "$ " at the front of the salary string.
+            controller.PopulateEditPositionForm();
         }
 
         private void cancelCreatePosBtn_Click(object sender, EventArgs e)
@@ -38,7 +33,7 @@ namespace Employee_Management_App.Views
             {
                 string newTitle = editTitleTextBox.Text;
                 int newSalary = int.Parse(editSalaryTextBox.Text);
-                controller.EditPosition(titleToEdit, newTitle, newSalary);
+                controller.EditPosition(newTitle, newSalary);
             }
             catch
             {

@@ -25,6 +25,7 @@ namespace Employee_Management_App
         public EditEmployeeForm editEmployeeForm { get; set; }
 
         private int employeeToEditId;
+        private string positionToEditTitle;
 
         public Controller()
         {
@@ -92,7 +93,7 @@ namespace Employee_Management_App
             }
         }
 
-        public void PopulateEmployeeEditForm()
+        public void PopulateEditEmployeeForm()
         {
             Employee employeeToEdit = employeeList.Find(Employee => Employee.Id == employeeToEditId);
             editEmployeeForm.firstNameTextBox.Text = employeeToEdit.FirstName;
@@ -148,9 +149,14 @@ namespace Employee_Management_App
             createPositionForm.Close();
         }
 
-        public void EditPosition(string titleToEdit, string newTitle, int newSalary)
+        public void SetPositionToEdit(ListViewItem position)
         {
-            Position positionToEdit = positionList.Find(Position => Position.Title == titleToEdit);
+            positionToEditTitle = position.SubItems[0].Text;
+        }
+
+        public void EditPosition(string newTitle, int newSalary)
+        {
+            Position positionToEdit = positionList.Find(Position => Position.Title == positionToEditTitle);
             positionToEdit.Title = newTitle;
             positionToEdit.Salary = newSalary;
 
@@ -185,6 +191,13 @@ namespace Employee_Management_App
             }
         }
 
+        public void PopulateEditPositionForm()
+        {
+            Position positionToEdit = positionList.Find(Position => Position.Title == positionToEditTitle);
+            editPositionForm.editTitleTextBox.Text = positionToEdit.Title;
+            editPositionForm.editSalaryTextBox.Text = positionToEdit.Salary.ToString();
+        }
+
 
         // Initial data population, for testing
 
@@ -206,3 +219,6 @@ namespace Employee_Management_App
         }
     }
 }
+
+
+//TODO: Migrate to IController interface which EmployeeController and PositionController will implement to reduce duplication.

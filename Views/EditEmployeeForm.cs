@@ -21,7 +21,7 @@ namespace Employee_Management_App.Views
             controller.editEmployeeForm = this;
 
             PopulatePositionComboBox();
-            controller.PopulateEmployeeEditForm();
+            controller.PopulateEditEmployeeForm();
         }
 
         private void PopulatePositionComboBox()
