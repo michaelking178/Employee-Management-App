@@ -42,9 +42,12 @@ namespace Employee_Management_App.Views
 
         private void editEmployeeBtn_Click(object sender, EventArgs e)
         {
-            Form editEmployeeForm = new EditEmployeeForm(controller);
-            editEmployeeForm.ShowDialog();
-            controller.PopulateEmployeeEditForm();
+            if (employeeListView.SelectedItems.Count != 0)
+            {
+                controller.SetEmployeeToEdit(employeeListView.SelectedItems[0]);
+                Form editEmployeeForm = new EditEmployeeForm(controller);
+                editEmployeeForm.ShowDialog();
+            }
         }
 
         private void addEmployeeBtn_Click(object sender, EventArgs e)

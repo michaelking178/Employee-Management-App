@@ -34,19 +34,15 @@ namespace Employee_Management_App.Views
         {
             try
             {
-                string streetAddress = streetAddressTextBox.Text;
-                string city = cityTextBox.Text;
-                string province = provinceComboBox.SelectedItem.ToString();
-                string postalCode = postalCodeTextBox.Text;
-
-                //TODO: Break up the street address in the Employee object for easier parsing later.
                 string position = positionComboBox.SelectedItem.ToString();
-                string fullAddress = streetAddress + " " + city + " " + province + " " + postalCode;
 
                 controller.AddEmployee(
                     firstNameTextBox.Text,
                     lastNameTextBox.Text,
-                    fullAddress,
+                    streetAddressTextBox.Text,
+                    cityTextBox.Text,
+                    provinceComboBox.SelectedItem.ToString(),
+                    postalCodeTextBox.Text,
                     phoneNumberTextBox.Text,
                     position
                 );

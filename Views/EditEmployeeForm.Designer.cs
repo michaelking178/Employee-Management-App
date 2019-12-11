@@ -115,6 +115,7 @@
             this.cancelEditEmployeeBtn.TabIndex = 30;
             this.cancelEditEmployeeBtn.Text = "Cancel";
             this.cancelEditEmployeeBtn.UseVisualStyleBackColor = true;
+            this.cancelEditEmployeeBtn.Click += new System.EventHandler(this.cancelEditEmployeeBtn_Click);
             // 
             // postalCodeTextBox
             // 
@@ -240,6 +241,7 @@
             this.MaximumSize = new System.Drawing.Size(678, 214);
             this.MinimumSize = new System.Drawing.Size(678, 214);
             this.Name = "EditEmployeeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit Employee";
             this.ResumeLayout(false);
             this.PerformLayout();

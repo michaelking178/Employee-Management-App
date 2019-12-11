@@ -18,6 +18,23 @@ namespace Employee_Management_App.Views
         {
             InitializeComponent();
             controller = _controller;
+            controller.editEmployeeForm = this;
+
+            PopulatePositionComboBox();
+            controller.PopulateEmployeeEditForm();
+        }
+
+        private void PopulatePositionComboBox()
+        {
+            for (int i = 0; i < controller.positionList.Count; i++)
+            {
+                positionComboBox.Items.Add(controller.positionList[i].Title);
+            }
+        }
+
+        private void cancelEditEmployeeBtn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

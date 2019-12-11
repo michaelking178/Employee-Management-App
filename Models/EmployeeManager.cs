@@ -12,12 +12,12 @@ namespace Employee_Management_App.Models
             Employees = new List<Employee>();
         }
 
-        public bool AddEmployee(string firstName, string lastName, string streetAddress, string phoneNumber, Position position)
+        public bool AddEmployee(string firstName, string lastName, string streetAddress, string city, string province, string postalCode, string phoneNumber, Position position)
         {
             int newId = GenerateId();
             if(newId != 0)
             {
-                Employee newEmployee = new Employee(GenerateId(), firstName, lastName, streetAddress, phoneNumber, position);
+                Employee newEmployee = new Employee(GenerateId(), firstName, lastName, streetAddress, city, province, postalCode, phoneNumber, position);
                 Employees.Add(newEmployee);
                 return true;
             }

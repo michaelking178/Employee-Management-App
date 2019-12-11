@@ -20,6 +20,8 @@ namespace Employee_Management_App.Views
             InitializeComponent();
             controller = _controller;
             controller.editPositionForm = this;
+
+            //TODO: abstract Edit Position Form population out of the UI item.
             titleToEdit = title;
             editTitleTextBox.Text = title;
             editSalaryTextBox.Text = salary.Remove(0,2); //Removes the "$ " at the front of the salary string.

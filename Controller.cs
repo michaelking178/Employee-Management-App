@@ -24,6 +24,8 @@ namespace Employee_Management_App
         public AddEmployeeForm addEmployeeForm { get; set; }
         public EditEmployeeForm editEmployeeForm { get; set; }
 
+        private int employeeToEditId;
+
         public Controller()
         {
             employeeManager = new EmployeeManager();
@@ -46,10 +48,11 @@ namespace Employee_Management_App
 
             foreach (Employee employee in employeeList)
             {
+                string employeeFullAddress = employee.StreetAddress + " " + employee.City + " " + employee.Province + " " + employee.PostalCode;
                 employeeListView.Items.Add(new ListViewItem(new string[] {
                     employee.Id.ToString(),
                     employee.FullName,
-                    employee.StreetAddress,
+                    employeeFullAddress,
                     employee.PhoneNumber,
                     employee.Position.Title,
                     "$ " + employee.Position.Salary.ToString()
@@ -57,15 +60,20 @@ namespace Employee_Management_App
             }
         }
 
-        public void AddEmployee(string firstName, string lastName, string streetAddress, string phoneNumber, string positionTitle)
+        public void AddEmployee(string firstName, string lastName, string streetAddress, string city, string province, string postalCode, string phoneNumber, string positionTitle)
         {
             Position position = positionList.Find(Position => Position.Title == positionTitle);
 
-            if (!employeeManager.AddEmployee(firstName, lastName, streetAddress, phoneNumber, position))
+            if (!employeeManager.AddEmployee(firstName, lastName, streetAddress, city, province, postalCode, phoneNumber, position))
             {
                 MessageBox.Show("Failed to create employee.");
             }
             UpdateEmployeeListView();
+        }
+
+        public void SetEmployeeToEdit(ListViewItem employee)
+        {
+            employeeToEditId = int.Parse(employee.SubItems[0].Text);
         }
 
         public void EditEmployee()
@@ -76,7 +84,7 @@ namespace Employee_Management_App
         public void RemoveEmployee(ListViewItem employee)
         {
             DialogResult confirmResult = MessageBox.Show("Are you sure you want to remove this employee? \nThis action cannot be undone.","Confirm Employee Removal", MessageBoxButtons.YesNo);
-            if(confirmResult == DialogResult.Yes)
+            if (confirmResult == DialogResult.Yes)
             {
                 int employeeId = int.Parse(employee.SubItems[0].Text);
                 employeeManager.RemoveEmployee(employeeId);
@@ -86,14 +94,15 @@ namespace Employee_Management_App
 
         public void PopulateEmployeeEditForm()
         {
-            string selectedEmployeeId = mainForm.employeeListView.SelectedItems[0].SubItems[0].Text;
-            Employee selectedEmployee = employeeList.Find(Employee => Employee.Id==int.Parse(selectedEmployeeId));
-
-            editEmployeeForm.firstNameTextBox.Text = selectedEmployee.FirstName;
-            editEmployeeForm.lastNameTextBox.Text = selectedEmployee.LastName;
-            editEmployeeForm.streetAddressTextBox.Text = selectedEmployee.StreetAddress;
-            editEmployeeForm.cityTextBox.Text = selectedEmployee.City;
-
+            Employee employeeToEdit = employeeList.Find(Employee => Employee.Id == employeeToEditId);
+            editEmployeeForm.firstNameTextBox.Text = employeeToEdit.FirstName;
+            editEmployeeForm.lastNameTextBox.Text = employeeToEdit.LastName;
+            editEmployeeForm.streetAddressTextBox.Text = employeeToEdit.StreetAddress;
+            editEmployeeForm.cityTextBox.Text = employeeToEdit.City;
+            editEmployeeForm.provinceComboBox.SelectedItem = employeeToEdit.Province;
+            editEmployeeForm.postalCodeTextBox.Text = employeeToEdit.PostalCode;
+            editEmployeeForm.phoneNumberTextBox.Text = employeeToEdit.PhoneNumber;
+            editEmployeeForm.positionComboBox.SelectedItem = employeeToEdit.Position.Title;
         }
 
 
@@ -110,14 +119,13 @@ namespace Employee_Management_App
                 {
                     position.Title,
                     "$ " + position.Salary.ToString()
-                })); ;
+                }));
             }
         }
 
         public void CreatePosition(string _title, string _salary)
         {
             string title = _title;
-            int salary;
 
             foreach (Position position in positionList)
             {
@@ -128,13 +136,13 @@ namespace Employee_Management_App
                 }
             }
 
-            if (!int.TryParse(_salary, out salary))
+            if (!int.TryParse(_salary, out _))
             {
                 MessageBox.Show("Please enter only numbers in the Salary field.", "Create Position Error");
                 return;
             }
 
-            salary = int.Parse(_salary);
+            int salary = int.Parse(_salary);
             positionManager.AddPosition(title, salary);
             UpdatePositionListView();
             createPositionForm.Close();
@@ -191,10 +199,10 @@ namespace Employee_Management_App
         }
         private void PopulateEmployeeList()
         {
-            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr. Winnipeg MB Canada R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
-            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres. Saskatoon SK Canada S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
-            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd. Gatineau QC Canada H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
-            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St. Pembrooke ON Canada T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr.", "Winnipeg", "Manitoba", "R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
+            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
+            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
+            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
         }
     }
 }
