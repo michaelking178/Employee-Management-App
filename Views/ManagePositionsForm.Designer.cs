@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.positionListview = new System.Windows.Forms.ListView();
+            this.positionListView = new System.Windows.Forms.ListView();
             this.titleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.salaryColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.createPositionBtn = new System.Windows.Forms.Button();
@@ -39,21 +39,21 @@
             // 
             // positionListview
             // 
-            this.positionListview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.positionListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.titleColumn,
             this.salaryColumn});
-            this.positionListview.FullRowSelect = true;
-            this.positionListview.GridLines = true;
-            this.positionListview.HideSelection = false;
-            this.positionListview.Location = new System.Drawing.Point(12, 12);
-            this.positionListview.MultiSelect = false;
-            this.positionListview.Name = "positionListview";
-            this.positionListview.Size = new System.Drawing.Size(209, 280);
-            this.positionListview.TabIndex = 0;
-            this.positionListview.UseCompatibleStateImageBehavior = false;
-            this.positionListview.View = System.Windows.Forms.View.Details;
-            this.positionListview.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.positionListview_ColumnClick);
-            this.positionListview.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.positionListview_ColumnWidthChanging);
+            this.positionListView.FullRowSelect = true;
+            this.positionListView.GridLines = true;
+            this.positionListView.HideSelection = false;
+            this.positionListView.Location = new System.Drawing.Point(12, 12);
+            this.positionListView.MultiSelect = false;
+            this.positionListView.Name = "positionListview";
+            this.positionListView.Size = new System.Drawing.Size(209, 280);
+            this.positionListView.TabIndex = 0;
+            this.positionListView.UseCompatibleStateImageBehavior = false;
+            this.positionListView.View = System.Windows.Forms.View.Details;
+            this.positionListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.positionListview_ColumnClick);
+            this.positionListView.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.positionListview_ColumnWidthChanging);
             // 
             // titleColumn
             // 
@@ -114,7 +114,7 @@
             this.Controls.Add(this.removePositionBtn);
             this.Controls.Add(this.editPositionBtn);
             this.Controls.Add(this.createPositionBtn);
-            this.Controls.Add(this.positionListview);
+            this.Controls.Add(this.positionListView);
             this.Name = "ManagePositionsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Manage Positions";
@@ -129,7 +129,7 @@
         private System.Windows.Forms.Button createPositionBtn;
         private System.Windows.Forms.Button editPositionBtn;
         private System.Windows.Forms.Button removePositionBtn;
-        public System.Windows.Forms.ListView positionListview;
+        public System.Windows.Forms.ListView positionListView;
         private System.Windows.Forms.Button closeManagePosBtn;
     }
 }

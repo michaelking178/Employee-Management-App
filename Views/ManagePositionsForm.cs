@@ -28,15 +28,15 @@ namespace Employee_Management_App.Views
 
         private void createPositionBtn_Click(object sender, EventArgs e)
         {
-            Form createPositionForm = new CreatePositionForm(controller);
+            Form createPositionForm = new AddPositionForm(controller);
             createPositionForm.ShowDialog();
         }
 
         private void editPositionBtn_Click(object sender, EventArgs e)
         {
-            if (positionListview.SelectedItems.Count != 0)
+            if (positionListView.SelectedItems.Count != 0)
             {
-                controller.SetPositionToEdit(positionListview.SelectedItems[0]);
+                controller.SetPositionToEdit(positionListView.SelectedItems[0]);
                 Form editPositionForm = new EditPositionForm(controller);
                 editPositionForm.ShowDialog();
             }
@@ -44,9 +44,9 @@ namespace Employee_Management_App.Views
 
         private void removePositionBtn_Click(object sender, EventArgs e)
         {
-            if (positionListview.SelectedItems.Count != 0)
+            if (positionListView.SelectedItems.Count != 0)
             {
-                controller.RemovePosition(positionListview.SelectedItems[0]);
+                controller.RemovePosition(positionListView.SelectedItems[0]);
             }
         }
 
@@ -59,7 +59,7 @@ namespace Employee_Management_App.Views
         private void positionListview_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             e.Cancel = true;
-            e.NewWidth = positionListview.Columns[e.ColumnIndex].Width;
+            e.NewWidth = positionListView.Columns[e.ColumnIndex].Width;
         }
 
         private void positionListview_ColumnClick(object sender, ColumnClickEventArgs e)

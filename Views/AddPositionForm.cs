@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Employee_Management_App.Views
 {
-    public partial class CreatePositionForm : Form
+    public partial class AddPositionForm : Form
     {
         private readonly Controller controller;
 
-        public CreatePositionForm(Controller _controller)
+        public AddPositionForm(Controller _controller)
         {
             InitializeComponent();
             controller = _controller;
@@ -28,7 +28,7 @@ namespace Employee_Management_App.Views
 
         private void createPosBtn_Click(object sender, EventArgs e)
         {
-            controller.CreatePosition(titleTextBox.Text, salaryTextBox.Text);
+            controller.AddPosition(titleTextBox.Text, salaryTextBox.Text);
         }
     }
 }

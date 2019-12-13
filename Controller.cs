@@ -19,7 +19,7 @@ namespace Employee_Management_App
 
         public MainForm mainForm { get; set; }
         public ManagePositionsForm managePositionsForm { get; set; }
-        public CreatePositionForm createPositionForm { get; set; }
+        public AddPositionForm createPositionForm { get; set; }
         public EditPositionForm editPositionForm { get; set; }
         public AddEmployeeForm addEmployeeForm { get; set; }
         public EditEmployeeForm editEmployeeForm { get; set; }
@@ -111,7 +111,7 @@ namespace Employee_Management_App
 
         public void UpdatePositionListView()
         {
-            ListView positionListView = managePositionsForm.positionListview;
+            ListView positionListView = managePositionsForm.positionListView;
             positionListView.Items.Clear();
 
             foreach (Position position in positionList)
@@ -124,7 +124,7 @@ namespace Employee_Management_App
             }
         }
 
-        public void CreatePosition(string _title, string _salary)
+        public void AddPosition(string _title, string _salary)
         {
             string title = _title;
 
@@ -154,11 +154,16 @@ namespace Employee_Management_App
             positionToEditTitle = position.SubItems[0].Text;
         }
 
-        public void EditPosition(string newTitle, int newSalary)
+        public void EditPosition(string newTitle, string newSalary)
         {
             Position positionToEdit = positionList.Find(Position => Position.Title == positionToEditTitle);
             positionToEdit.Title = newTitle;
-            positionToEdit.Salary = newSalary;
+            if (!int.TryParse(newSalary, out _))
+            {
+                MessageBox.Show("Please enter only numbers in the Salary field.");
+                return;
+            }
+            positionToEdit.Salary = int.Parse(newSalary);
 
             UpdatePositionListView();
             editPositionForm.Close();

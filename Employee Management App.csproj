@@ -47,10 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
-    <Compile Include="IController.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeManager.cs" />
-    <Compile Include="PositionController.cs" />
     <Compile Include="Views\AddEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,11 +73,11 @@
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreatePositionForm.cs">
+    <Compile Include="Views\AddPositionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CreatePositionForm.Designer.cs">
-      <DependentUpon>CreatePositionForm.cs</DependentUpon>
+    <Compile Include="Views\AddPositionForm.Designer.cs">
+      <DependentUpon>AddPositionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Position.cs" />
     <Compile Include="Views\ManagePositionsForm.cs">
@@ -103,8 +101,8 @@
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CreatePositionForm.resx">
-      <DependentUpon>CreatePositionForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\AddPositionForm.resx">
+      <DependentUpon>AddPositionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ManagePositionsForm.resx">
       <DependentUpon>ManagePositionsForm.cs</DependentUpon>

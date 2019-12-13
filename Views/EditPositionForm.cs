@@ -29,16 +29,7 @@ namespace Employee_Management_App.Views
 
         private void editPosBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string newTitle = editTitleTextBox.Text;
-                int newSalary = int.Parse(editSalaryTextBox.Text);
-                controller.EditPosition(newTitle, newSalary);
-            }
-            catch
-            {
-                MessageBox.Show("Please enter only numbers in the Salary field.", "Edit Position Error");
-            }
+            controller.EditPosition(editTitleTextBox.Text, editSalaryTextBox.Text);
         }
     }
 }

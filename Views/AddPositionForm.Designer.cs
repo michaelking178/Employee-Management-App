@@ -1,6 +1,6 @@
 ﻿namespace Employee_Management_App.Views
 {
-    partial class CreatePositionForm
+    partial class AddPositionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -118,9 +118,9 @@
 
         private System.Windows.Forms.Label titleLbl;
         private System.Windows.Forms.Label salaryLbl;
-        private System.Windows.Forms.TextBox titleTextBox;
-        private System.Windows.Forms.TextBox salaryTextBox;
         private System.Windows.Forms.Button cancelCreatePosBtn;
         private System.Windows.Forms.Button createPosBtn;
+        public System.Windows.Forms.TextBox titleTextBox;
+        public System.Windows.Forms.TextBox salaryTextBox;
     }
 }
