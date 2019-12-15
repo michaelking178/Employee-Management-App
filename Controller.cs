@@ -27,6 +27,12 @@ namespace Employee_Management_App
         private int employeeToEditId;
         private string positionToEditTitle;
 
+        private int currentEmployeeSortIndex;
+        private bool employeeIsAscending = false;
+
+        private int currentPositionSortIndex;
+        private bool positionIsAscending = false;
+
         public Controller()
         {
             employeeManager = new EmployeeManager();
@@ -40,6 +46,24 @@ namespace Employee_Management_App
         }
 
 
+        // Miscellaneous Utilities
+
+        public void SortColumn(ListView listView, int columnIndex)
+        {
+            if (listView == mainForm.employeeListView)
+            {
+                SortEmployeeColumn(columnIndex);
+                currentEmployeeSortIndex = columnIndex;
+            }
+            else if (listView == managePositionsForm.positionListView)
+            {
+                SortPositionColumn(columnIndex);
+                currentPositionSortIndex = columnIndex;
+            }
+
+        }
+
+
         // Employee Management
 
         public void UpdateEmployeeListView()
@@ -50,9 +74,10 @@ namespace Employee_Management_App
             foreach (Employee employee in employeeList)
             {
                 string employeeFullAddress = employee.StreetAddress + " " + employee.City + " " + employee.Province + " " + employee.PostalCode;
+                string employeeFullName = employee.LastName + ", " + employee.FirstName;
                 employeeListView.Items.Add(new ListViewItem(new string[] {
                     employee.Id.ToString(),
-                    employee.FullName,
+                    employeeFullName,
                     employeeFullAddress,
                     employee.PhoneNumber,
                     employee.Position.Title,
@@ -77,14 +102,27 @@ namespace Employee_Management_App
             employeeToEditId = int.Parse(employee.SubItems[0].Text);
         }
 
-        public void EditEmployee()
+        public void EditEmployee(string firstName, string lastName, string streetAddress, string city, string province, string postalCode, string phoneNumber, string positionTitle)
         {
-            //TODO: Implement 'Edit Employee' functionality
+            Employee employeeToEdit = employeeList.Find(Employee => Employee.Id == employeeToEditId);
+            Position newPosition = positionList.Find(Position => Position.Title == positionTitle);
+
+            employeeToEdit.FirstName = firstName;
+            employeeToEdit.LastName = lastName;
+            employeeToEdit.StreetAddress = streetAddress;
+            employeeToEdit.City = city;
+            employeeToEdit.Province = province;
+            employeeToEdit.PostalCode = postalCode;
+            employeeToEdit.PhoneNumber = phoneNumber;
+            employeeToEdit.Position = newPosition;
+
+            UpdateEmployeeListView();
+            editEmployeeForm.Close();
         }
 
         public void RemoveEmployee(ListViewItem employee)
         {
-            DialogResult confirmResult = MessageBox.Show("Are you sure you want to remove this employee? \nThis action cannot be undone.","Confirm Employee Removal", MessageBoxButtons.YesNo);
+            DialogResult confirmResult = MessageBox.Show("Are you sure you want to remove this employee? \nThis action cannot be undone.", "Confirm Employee Removal", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
                 int employeeId = int.Parse(employee.SubItems[0].Text);
@@ -106,6 +144,68 @@ namespace Employee_Management_App
             editEmployeeForm.positionComboBox.SelectedItem = employeeToEdit.Position.Title;
         }
 
+        private void SortEmployeeColumn(int columnIndex)
+        {
+            // Toggle ascending/descending
+            if (columnIndex == currentEmployeeSortIndex)
+            {
+                employeeIsAscending = !employeeIsAscending;
+            }
+
+            if (employeeIsAscending)
+            {
+                employeeList = SortEmployeesAscending(columnIndex);
+            }
+            else
+            {
+                employeeList = SortEmployeesDescending(columnIndex);
+            }
+            UpdateEmployeeListView();
+        }
+
+        private List<Employee> SortEmployeesAscending(int columnIndex)
+        {
+            switch (columnIndex)
+            {
+                case 0:
+                    return employeeList.OrderBy(employee => employee.Id).ToList();
+                case 1:
+                    return employeeList.OrderBy(employee => employee.LastName).ToList();
+                case 2:
+                    return employeeList.OrderBy(employee => employee.StreetAddress).ToList();
+                case 3:
+                    return employeeList.OrderBy(employee => employee.PhoneNumber).ToList();
+                case 4:
+                    return employeeList.OrderBy(employee => employee.Position.Title).ToList();
+                case 5:
+                    return employeeList.OrderBy(employee => employee.Position.Salary).ToList();
+                default:
+                    MessageBox.Show("Error sorting column.", "Sort Column Error");
+                    return employeeList;
+            }
+        }
+
+        private List<Employee> SortEmployeesDescending(int columnIndex)
+        {
+            switch (columnIndex)
+            {
+                case 0:
+                    return employeeList.OrderByDescending(employee => employee.Id).ToList();
+                case 1:
+                    return employeeList.OrderByDescending(employee => employee.LastName).ToList();
+                case 2:
+                    return employeeList.OrderByDescending(employee => employee.StreetAddress).ToList();
+                case 3:
+                    return employeeList.OrderByDescending(employee => employee.PhoneNumber).ToList();
+                case 4:
+                    return employeeList.OrderByDescending(employee => employee.Position.Title).ToList();
+                case 5:
+                    return employeeList.OrderByDescending(employee => employee.Position.Salary).ToList();
+                default:
+                    MessageBox.Show("Cannot sort employee list.", "Sort Column Error");
+                    return employeeList;
+            }
+        }
 
         // Position Management
 
@@ -124,13 +224,11 @@ namespace Employee_Management_App
             }
         }
 
-        public void AddPosition(string _title, string _salary)
+        public void AddPosition(string title, string _salary)
         {
-            string title = _title;
-
             foreach (Position position in positionList)
             {
-                if (title == position.Title)
+                if (title.ToLower() == position.Title.ToLower())
                 {
                     MessageBox.Show("A position with that title already exists.", "Create Position Error");
                     return;
@@ -157,12 +255,14 @@ namespace Employee_Management_App
         public void EditPosition(string newTitle, string newSalary)
         {
             Position positionToEdit = positionList.Find(Position => Position.Title == positionToEditTitle);
-            positionToEdit.Title = newTitle;
+
             if (!int.TryParse(newSalary, out _))
             {
                 MessageBox.Show("Please enter only numbers in the Salary field.");
                 return;
             }
+
+            positionToEdit.Title = newTitle;
             positionToEdit.Salary = int.Parse(newSalary);
 
             UpdatePositionListView();
@@ -203,6 +303,51 @@ namespace Employee_Management_App
             editPositionForm.editSalaryTextBox.Text = positionToEdit.Salary.ToString();
         }
 
+        private void SortPositionColumn(int columnIndex)
+        {
+            if (columnIndex == currentPositionSortIndex)
+            {
+                positionIsAscending = !positionIsAscending;
+            }
+            if (positionIsAscending)
+            {
+                positionList = SortPositionsAscending(columnIndex);
+            }
+            else
+            {
+                positionList = SortPositionsDescending(columnIndex);
+            }
+            UpdatePositionListView();
+        }
+
+        private List<Position> SortPositionsAscending(int columnIndex)
+        {
+            switch (columnIndex)
+            {
+                case 0:
+                    return positionList.OrderBy(Position => Position.Title).ToList();
+                case 1:
+                    return positionList.OrderBy(Position => Position.Salary).ToList();
+                 default:
+                    MessageBox.Show("Error sorting column.", "Sort Column Error");
+                    return positionList;
+            }
+        }
+
+        private List<Position> SortPositionsDescending(int columnIndex)
+        {
+            switch (columnIndex)
+            {
+                case 0:
+                    return positionList.OrderByDescending(Position => Position.Title).ToList();
+                case 1:
+                    return positionList.OrderByDescending(Position => Position.Salary).ToList();
+                default:
+                    MessageBox.Show("Error sorting column.", "Sort Column Error");
+                    return positionList;
+            }
+        }
+
 
         // Initial data population, for testing
 
@@ -221,9 +366,43 @@ namespace Employee_Management_App
             employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
             employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
             employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr.", "Winnipeg", "Manitoba", "R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
+            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
+            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
+            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr.", "Winnipeg", "Manitoba", "R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
+            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
+            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
+            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr.", "Winnipeg", "Manitoba", "R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
+            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
+            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
+            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr.", "Winnipeg", "Manitoba", "R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
+            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
+            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
+            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr.", "Winnipeg", "Manitoba", "R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
+            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
+            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
+            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr.", "Winnipeg", "Manitoba", "R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
+            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
+            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
+            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr.", "Winnipeg", "Manitoba", "R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
+            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
+            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
+            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr.", "Winnipeg", "Manitoba", "R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
+            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
+            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
+            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+            employeeManager.AddEmployee("John", "Eden", "45 Mulberry Dr.", "Winnipeg", "Manitoba", "R3L 2T1", "204-448-8235", positionManager.GetPosition("CEO"));
+            employeeManager.AddEmployee("Arthur", "Morgan", "115-B LaColme Cres.", "Saskatoon", "Saskatchewan", "S6H 4G2", "306-945-7865", positionManager.GetPosition("Marketing Manager"));
+            employeeManager.AddEmployee("Sandra", "Pence", "98B Terrence Rd.", "Gatineau", "Quebec", "H9T 2F2", "514-354-1468", positionManager.GetPosition("Chief Sales Officer"));
+            employeeManager.AddEmployee("Miles", "Davies", "5793 Haliburton St.", "Pembrooke", "Ontario", "T4F 3D2", "486-451-9788", positionManager.GetPosition("Department Manager"));
+
         }
     }
 }
-
-
-//TODO: Migrate to IController interface which EmployeeController and PositionController will implement to reduce duplication.

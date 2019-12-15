@@ -36,5 +36,27 @@ namespace Employee_Management_App.Views
         {
             Close();
         }
+
+        private void editEmployeeBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                controller.EditEmployee(
+                    firstNameTextBox.Text,
+                    lastNameTextBox.Text,
+                    streetAddressTextBox.Text,
+                    cityTextBox.Text,
+                    provinceComboBox.SelectedItem.ToString(),
+                    postalCodeTextBox.Text,
+                    phoneNumberTextBox.Text,
+                    positionComboBox.SelectedItem.ToString()
+                );
+            }
+            catch
+            {
+                MessageBox.Show("Cannot edit employee. Employee data is not valid.", "Edit Employee Error");
+            }
+
+        }
     }
 }

@@ -61,5 +61,10 @@ namespace Employee_Management_App.Views
             e.Cancel = true;
             e.NewWidth = employeeListView.Columns[e.ColumnIndex].Width;
         }
+
+        private void employeeListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            controller.SortColumn(employeeListView, e.Column);
+        }
     }
 }

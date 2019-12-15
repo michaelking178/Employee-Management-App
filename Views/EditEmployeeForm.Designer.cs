@@ -106,6 +106,7 @@
             this.editEmployeeBtn.TabIndex = 28;
             this.editEmployeeBtn.Text = "Edit Employee";
             this.editEmployeeBtn.UseVisualStyleBackColor = true;
+            this.editEmployeeBtn.Click += new System.EventHandler(this.editEmployeeBtn_Click);
             // 
             // cancelEditEmployeeBtn
             // 

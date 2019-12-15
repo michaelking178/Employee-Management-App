@@ -142,7 +142,9 @@
             // 
             // postalCodeTextBox
             // 
+            this.postalCodeTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.postalCodeTextBox.Location = new System.Drawing.Point(94, 116);
+            this.postalCodeTextBox.MaxLength = 7;
             this.postalCodeTextBox.Name = "postalCodeTextBox";
             this.postalCodeTextBox.Size = new System.Drawing.Size(131, 20);
             this.postalCodeTextBox.TabIndex = 5;
@@ -179,6 +181,7 @@
             // phoneNumberTextBox
             // 
             this.phoneNumberTextBox.Location = new System.Drawing.Point(315, 116);
+            this.phoneNumberTextBox.MaxLength = 10;
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
             this.phoneNumberTextBox.Size = new System.Drawing.Size(127, 20);
             this.phoneNumberTextBox.TabIndex = 6;

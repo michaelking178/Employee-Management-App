@@ -5,7 +5,6 @@
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FullName { get; set; }
         public string StreetAddress { get; set; }
         public string City { get; set; }
         public string Province { get; set; }
@@ -28,7 +27,6 @@
             Id = id;
             FirstName = firstName;
             LastName = lastName;
-            FullName = FirstName + " " + LastName;
             StreetAddress = streetAddress;
             City = city;
             Province = province;

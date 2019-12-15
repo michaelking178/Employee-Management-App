@@ -64,7 +64,7 @@ namespace Employee_Management_App.Views
 
         private void positionListview_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            //TODO: Implement column sorting
+            controller.SortColumn(positionListView, e.Column);
         }
     }
 }

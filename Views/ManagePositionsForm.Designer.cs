@@ -37,7 +37,7 @@
             this.closeManagePosBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // positionListview
+            // positionListView
             // 
             this.positionListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.titleColumn,
@@ -47,8 +47,8 @@
             this.positionListView.HideSelection = false;
             this.positionListView.Location = new System.Drawing.Point(12, 12);
             this.positionListView.MultiSelect = false;
-            this.positionListView.Name = "positionListview";
-            this.positionListView.Size = new System.Drawing.Size(209, 280);
+            this.positionListView.Name = "positionListView";
+            this.positionListView.Size = new System.Drawing.Size(234, 280);
             this.positionListView.TabIndex = 0;
             this.positionListView.UseCompatibleStateImageBehavior = false;
             this.positionListView.View = System.Windows.Forms.View.Details;
@@ -67,7 +67,7 @@
             // 
             // createPositionBtn
             // 
-            this.createPositionBtn.Location = new System.Drawing.Point(227, 12);
+            this.createPositionBtn.Location = new System.Drawing.Point(252, 13);
             this.createPositionBtn.Name = "createPositionBtn";
             this.createPositionBtn.Size = new System.Drawing.Size(202, 43);
             this.createPositionBtn.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             // editPositionBtn
             // 
-            this.editPositionBtn.Location = new System.Drawing.Point(226, 61);
+            this.editPositionBtn.Location = new System.Drawing.Point(251, 62);
             this.editPositionBtn.Name = "editPositionBtn";
             this.editPositionBtn.Size = new System.Drawing.Size(202, 43);
             this.editPositionBtn.TabIndex = 3;
@@ -87,7 +87,7 @@
             // 
             // removePositionBtn
             // 
-            this.removePositionBtn.Location = new System.Drawing.Point(227, 110);
+            this.removePositionBtn.Location = new System.Drawing.Point(252, 111);
             this.removePositionBtn.Name = "removePositionBtn";
             this.removePositionBtn.Size = new System.Drawing.Size(202, 43);
             this.removePositionBtn.TabIndex = 4;
@@ -97,7 +97,7 @@
             // 
             // closeManagePosBtn
             // 
-            this.closeManagePosBtn.Location = new System.Drawing.Point(227, 249);
+            this.closeManagePosBtn.Location = new System.Drawing.Point(252, 250);
             this.closeManagePosBtn.Name = "closeManagePosBtn";
             this.closeManagePosBtn.Size = new System.Drawing.Size(202, 43);
             this.closeManagePosBtn.TabIndex = 5;
@@ -109,7 +109,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 304);
+            this.ClientSize = new System.Drawing.Size(465, 304);
             this.Controls.Add(this.closeManagePosBtn);
             this.Controls.Add(this.removePositionBtn);
             this.Controls.Add(this.editPositionBtn);

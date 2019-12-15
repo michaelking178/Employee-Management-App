@@ -60,6 +60,7 @@
             this.employeeListView.TabIndex = 0;
             this.employeeListView.UseCompatibleStateImageBehavior = false;
             this.employeeListView.View = System.Windows.Forms.View.Details;
+            this.employeeListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.employeeListView_ColumnClick);
             this.employeeListView.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.employeeListview_ColumnWidthChanging);
             // 
             // employeeIDColumn
@@ -72,7 +73,7 @@
             // 
             this.nameColumn.Tag = "name";
             this.nameColumn.Text = "Name";
-            this.nameColumn.Width = 150;
+            this.nameColumn.Width = 120;
             // 
             // StreetAddressColumn
             // 
@@ -90,13 +91,13 @@
             // 
             this.positionColumn.Tag = "position";
             this.positionColumn.Text = "Position";
-            this.positionColumn.Width = 120;
+            this.positionColumn.Width = 140;
             // 
             // salaryColumn
             // 
             this.salaryColumn.Tag = "salary";
             this.salaryColumn.Text = "Salary";
-            this.salaryColumn.Width = 80;
+            this.salaryColumn.Width = 70;
             // 
             // addEmployeeBtn
             // 
